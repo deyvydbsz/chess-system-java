@@ -4,6 +4,7 @@ import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -30,6 +31,26 @@ public class UI {
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+    // https://stackoverflow.com/questions/2979383/java-clear-the-console
+    /* the next 4 lines should work, but it doesn't
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        }
+     */
+    public static void clearScreen() {
+        try {
+            final String os = System.getProperty("os.name");
+            if (os.contains("Windows")) {
+                Runtime.getRuntime().exec("cls");
+            }else {
+                Runtime.getRuntime().exec("clear");
+            }
+        }
+        catch (final Exception e){
+            //  Handle any exceptions.
+        }
+    }
     public static ChessPosition readChessPosition(Scanner sc) {
         try {
         String s = sc.nextLine();
