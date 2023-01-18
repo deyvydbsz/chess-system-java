@@ -8,7 +8,7 @@ public class Board {
 
     public Board(int rows, int columns) {
         if (rows < 1 || columns < 1) {
-            throw new BoardException("Error creatin board: there must be at least 1 row and 1 colunm");
+            throw new BoardException("Error creating board: there must be at least 1 row and 1 column");
         }
         this.rows = rows;
         this.columns = columns;
@@ -59,8 +59,8 @@ public class Board {
         return aux;
     }
 
-    public boolean positionExists(int row, int column) {
-       return row >= 0 && row < rows && column >= 0 && column < columns;
+    private boolean positionExists(int row, int column) {
+        return row >= 0 && row < rows && column >= 0 && column < columns;
     }
 
     public boolean positionExists(Position position) {
