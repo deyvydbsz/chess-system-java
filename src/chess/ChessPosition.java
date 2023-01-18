@@ -4,19 +4,19 @@ import boardgame.Position;
 
 public class ChessPosition {
 
-    private char colunm;
+    private char column;
     private int row;
 
-    public ChessPosition(char colunm, int row) {
-        if (colunm < 'a' || colunm > 'h' || row < 1 || row > 8) {
+    public ChessPosition(char column, int row) {
+        if (column < 'a' || column > 'h' || row < 1 || row > 8) {
             throw new ChessException("Error instantiating chess position. Valid values are from a1 to h8.");
         }
-        this.colunm = colunm;
+        this.column = column;
         this.row = row;
     }
 
-    public char getColunm() {
-        return colunm;
+    public char getColumn() {
+        return column;
     }
 
     public int getRow() {
@@ -24,14 +24,14 @@ public class ChessPosition {
     }
 
     protected Position toPosition() {
-        return new Position(8 - row, colunm - 'a');
+        return new Position(8 - row, column - 'a');
     }
     protected static ChessPosition fromPosition(Position position) {
-        return new ChessPosition((char) ('a' - position.getColumn()), 8 - position.getRow());
+        return new ChessPosition((char) ('a' + position.getColumn()), 8 - position.getRow());
     }
 
     @Override
     public String toString() {
-        return "" + colunm + row;
+        return "" + column + row;
     }
 }
